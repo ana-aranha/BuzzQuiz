@@ -17,6 +17,11 @@ h1{
     color: #FFFFFF;
 }
 
+p{
+    font-size: 2.3rem;
+    font-weight: 700;
+}
+
 header {
     background-color: #EC362D;
     width: 100%;
@@ -41,8 +46,9 @@ main{
 main > div{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     margin-top: 7.7rem;
+    justify-content: center;
+    align-items: center;
 }
 
 /*Botei a altura e o TESTE só pra não ter espaço vazio*/
@@ -50,12 +56,10 @@ main > div{
     border-radius: 0.5rem;
     height: 18.1rem; 
     border: 0.1rem solid #D4D4D4;
-    align-items: center;
-    justify-content: center;
 }
 
 .quizzStyle{
-    margin-top: 1.2rem;
+    margin: 1.2rem 0.5rem;
     position: relative;
     background: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 1));
     border-radius: 0.5rem;
@@ -77,8 +81,26 @@ main > div{
     z-index: 1;
     color: #FFFFFF;
     font-size: 20px;
+    font-weight: 400;
     line-height: 23px;
     word-break: break-word;
+}
+
+.newQuiz{
+    background-color: #FFFFFF;
+    box-shadow: 0rem 0rem 0.1rem rgba(0, 0, 0, 0.05);
+    flex-direction: column;
+    justify-content: center;
+}
+
+.newQuiz div{
+    margin: 1.2rem 1.6rem;
+}
+
+.newQuiz input{
+    width: 56.4rem;
+    height: 4.6rem;
+    margin-top: 0.4rem;
 }
 
 

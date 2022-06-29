@@ -22,7 +22,7 @@ function isImage(url) {
   }
 
 function renderQuiz(){
-    for(let i=0;i<quizzes.length;i++){
+    for(let i=0;i<quizzes.length-2;i++){
         if(isImage(quizzes[i].image)){
         document.querySelector(".otherQuizzes").innerHTML += `
         <div class = 'quizzStyle' onclick='openQuizz(this)'>
