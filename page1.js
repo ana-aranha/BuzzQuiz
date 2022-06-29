@@ -11,13 +11,35 @@ function getQuiz() {
 }
 
 function yourQuizzes() {
+  const main = document.querySelector("main");
   if (userStorage.length === 0) {
-    document.querySelector("main").innerHTML = `
-        <div class='userQuizzes'>
+    main.innerHTML = `
+        <div class='nonQuizzes'>
         <h1>Você não criou nenhum</br>quizz ainda :(</h1>
-        <button>Criar Quizz</button>
+        <button onclick=''>Criar Quizz</button>
         </div>
         <div class='otherQuizzes'></div>`;
+  } else {
+    main.innerHTML = `
+        <div class='userSection'>
+            <div class='sectionTitle'>
+                <h1>Seus Quizzes</h1>
+                <button><img src='img/button.svg' onclick=''></button>
+            </div>
+            <div class='userQuizzes'>
+                <div class="quizz">
+                <img src='img/quizz1.png'>
+                <p>O quão Potterhead é você?</p>
+                </div> 
+                <div class="quizz">
+                <img src='img/quizz1.png'>
+                <p>O quão Potterhead é você?</p>
+                </div> 
+            </div>
+        </div>
+        <div class='otherQuizzes'></div>;
+        
+      `;
   }
 }
 
@@ -27,12 +49,12 @@ function isImage(url) {
 
 function renderQuiz(resposta) {
   quizzes = resposta.data;
-  for (let i = 0; i < quizzes.length - 2; i++) {
+  for (let i = 0; i < quizzes.length - 1; i++) {
     if (isImage(quizzes[i].image)) {
       document.querySelector(".otherQuizzes").innerHTML += `
-        <div class = 'quizzStyle' onclick='openQuizz(this)'>
+        <div class='quizzStyle' onclick='openQuizz(this)'>
         <img src='${quizzes[i].image}'>
-        <p>${quizzes[i].title}</p>
+        <p class='quizzTitle'>${quizzes[i].title}</p>
         <div>`;
     }
   }
