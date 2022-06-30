@@ -1,5 +1,7 @@
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
+  transition: scroll 1500ms;
 }
 
 * {
@@ -125,11 +127,11 @@ main > div {
     width: 100%;
 }
 
-.tittleQuizzes{
-    position: absolute;
-    top: -2.2rem;
-    left: 0;
-    font-size: 2rem;
+.tittleQuizzes {
+  position: absolute;
+  top: -2.2rem;
+  left: 0;
+  font-size: 2rem;
 }
 
 .quizzStyle {
@@ -172,11 +174,11 @@ main > div {
   position: relative;
 }
 
-.newQuiz img{
-    position: absolute;
-    height: 2.3rem;
-    top: 2.7rem;
-    right: 2.4rem;
+.newQuiz img {
+  position: absolute;
+  height: 2.3rem;
+  top: 2.7rem;
+  right: 2.4rem;
 }
 
 .newQuiz input {
@@ -206,7 +208,6 @@ main > div {
   cursor: pointer;
 }
 
-
 @media (max-width: 1050px) {
   main {
     padding: 0 2rem;
@@ -218,7 +219,7 @@ main > div {
     margin-top: 3rem;
   }
 
-  .newQuiz{
+  .newQuiz {
     width: 100%;
   }
 
