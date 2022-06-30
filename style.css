@@ -121,8 +121,9 @@ main > div {
   cursor: pointer;
 }
 
-.otherQuizzes {
-  position: relative;
+.otherQuizzes{
+    position: relative;
+    width: 100%;
 }
 
 .tittleQuizzes {

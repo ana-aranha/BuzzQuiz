@@ -11,6 +11,8 @@ let urlImage3;
 let inputsArray;
 let numberQuestions = 0;
 let numberLevels = 0;
+let counter = 0;
+let wrongOption;
 const userNewQuiz = {
   title: "",
   image: "",
@@ -73,11 +75,9 @@ function creattingQuestions() {
           <p>Pergunta ${i}</p> 
           <img onclick="editQuestion(this) "src="img/Vector.png">
           </div>
-          `;
-  }
-  document.querySelector(
-    "main"
-  ).innerHTML += `<button class='createQuestions' onclick="checkQuestionValidation()">Prosseguir pra criar níveis</button>`;
+          `;  
+        }
+        document.querySelector("main").innerHTML += `<button class='createQuestions' onclick="checkQuestions()">Prosseguir pra criar níveis</button>`
 }
 
 function editQuestion(element) {
@@ -108,8 +108,11 @@ function editQuestion(element) {
         </div>`;
 }
 
-function gettingQuestion() {
-  inputsArray = document.querySelectorAll("input");
+function gettingQuestion(element) {
+    let inputsArray = element.querySelectorAll("input")
+  if(inputsArray.length === 0){
+    return
+  }
   if (
     inputsArray[0].value != "" &&
     inputsArray[0].value.length > 19 &&
@@ -122,39 +125,92 @@ function gettingQuestion() {
   }
 }
 
-function gettingCorrectAnswer() {
-  inputsArray = document.querySelectorAll("input");
-  if (inputsArray[2].value != "" && isImage(inputsArray[3].value) === true) {
+function gettingCorrectAnswer(element) {
+  let inputsArray = element.querySelectorAll("input")
+    if(inputsArray.length === 0){
+      return
+    }
+  if (inputsArray[2].value != "" && isImage(inputsArray[3].value)) {
     return true;
   } else {
     return false;
   }
 }
 
-function gettingWrongAnswer() {
-  inputsArray = document.querySelectorAll("input");
-  if (
-    (inputsArray[4].value != "" && isImage(inputsArray[5].value)) ||
-    (inputsArray[6].value != "" && isImage(inputsArray[7].value)) ||
-    (inputsArray[8].value != "" && isImage(inputsArray[9].value))
-  ) {
-    return true;
-  } else {
-    return false;
-  }
-}
+function gettingWrongAnswer(element) {
+    let inputsArray = element.querySelectorAll("input")
+    let wrongOption = 0
+    if(inputsArray.length === 0){
+      return
+    }
+    if (inputsArray[4].value != "" && isImage(inputsArray[5].value)){
+      wrongOption ++
+    }
+    if(inputsArray[6].value != "" && isImage(inputsArray[7].value)){
+      wrongOption ++
+    }
+    if(inputsArray[8].value != "" && isImage(inputsArray[9].value)){
+      wrongOption ++
+    }
+    console.log(wrongOption)
+    if(wrongOption >0)
+    {
+        return true;
+      } else if (wrongOption == 0){
+        return false;
+      }
+    }
 
-function checkQuestionValidation() {
-  if (
-    gettingQuestion() === true &&
-    gettingCorrectAnswer() === true &&
-    gettingWrongAnswer() === true
-  ) {
+/*function questionObject(element){
+  let inputsArray = element.querySelectorAll("input")
+  let wrong = ""
+  console.log(valor)
+      for(i=0;i<=valor+1;i+=2){
+        wrong = wrong + `,{
+          text: ${inputsArray[4+i].value},
+          image: ${inputsArray[5+i].value},
+          isCorrectAnswer: false
+        }`
+      }
+    let question = (`
+      {
+        title: "${inputsArray[0].value}",
+        color: "${inputsArray[1].value}",
+        answers: [
+            {
+              text: "${inputsArray[2].value}",
+              image: "${inputsArray[3].value}",
+              isCorrectAnswer: true
+            }${wrong}
+          ]
+        }`)
+      console.log(question)
+    }*/
+    
+function checkQuestions(){
+  questionsArray = document.querySelectorAll(".newQuiz")
+  for(i=0;i<questionsArray.length;i++){
+    checkQuestionValidation(questionsArray[i])
+  }
+  if (counter === numberQuestions){
     creattingQuizLevels();
+    counter = 0
   } else {
     alert("Preencha os campos corretamentes");
+    counter = 0
   }
 }
+
+function checkQuestionValidation(element) {
+  if (
+    gettingQuestion(element) === true &&
+    gettingCorrectAnswer(element) === true &&
+    gettingWrongAnswer(element) === true
+  ) { counter ++
+     //questionObject(element)
+  }
+}
+
 
 function creattingQuizLevels() {
   const main = document.querySelector("main");

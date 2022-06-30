@@ -1,4 +1,5 @@
-let linkBuzzQuiz = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
+//Lista de Quizzes
+let linkBuzzQuiz = "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes";
 let quizzes;
 let userStorage = [];
 function getQuiz() {
@@ -52,9 +53,8 @@ function isImage(url) {
 
 function renderQuiz(resposta) {
   quizzes = resposta.data;
-  document.querySelector(".otherQuizzes").innerHTML =
-    '<p class="tittleQuizzes">Todos os Quizes</p>';
-  for (let i = 0; i < quizzes.length - 1; i++) {
+  document.querySelector(".otherQuizzes").innerHTML = '<p class="tittleQuizzes">Todos os Quizes</p>'
+  for (let i = 0; i < quizzes.length; i++) {
     if (isImage(quizzes[i].image)) {
       document.querySelector(".otherQuizzes").innerHTML += `
         <div class='quizzStyle' onclick='openQuizz(this)'>
