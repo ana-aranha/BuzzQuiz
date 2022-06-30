@@ -13,6 +13,7 @@ let inputsArray
 let numberQuestions = 0;
 let numberLevels = 0;
 let counter = 0;
+let wrongOption = 0;
 const userNewQuiz = {
   title: "",
   image: "",
@@ -140,19 +141,27 @@ function gettingCorrectAnswer(element) {
 
 function gettingWrongAnswer(element) {
     let inputsArray = element.querySelectorAll("input")
+    let wrongOption = 0
     if(inputsArray.length === 0){
       return
     }
-  if (
-    (inputsArray[4].value != "" && isImage(inputsArray[5].value)) ||
-    (inputsArray[6].value != "" && isImage(inputsArray[7].value)) ||
-    (inputsArray[8].value != "" && isImage(inputsArray[9].value))
-  ) {
-    return true;
-  } else {
-    return false;
-  }
-}
+    if (inputsArray[4].value != "" && isImage(inputsArray[5].value)){
+      wrongOption ++
+    }
+    if(inputsArray[6].value != "" && isImage(inputsArray[7].value)){
+      wrongOption ++
+    }
+    if(inputsArray[8].value != "" && isImage(inputsArray[9].value)){
+      wrongOption ++
+    }
+    console.log(wrongOption)
+    if(wrongOption >0)
+    {
+        return true;
+      } else if (wrongOption == 0){
+        return false;
+      }
+    }
 
 function checkQuestions(){
   questionsArray = document.querySelectorAll(".newQuiz")
