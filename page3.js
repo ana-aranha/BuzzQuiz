@@ -9,6 +9,7 @@ let wrongAnswer2;
 let urlImage2;
 let wrongAnswer3;
 let urlImage3;
+let inputsArray
 let numberQuestions = 0;
 let numberLevels = 0;
 const userNewQuiz = {
@@ -64,11 +65,25 @@ function creattingQuizData() {
   }
 }
 
+
+
 function creattingQuestions() {
-  document.querySelector("main").innerHTML = `    
-    <div><p>Crie suas Perguntas</p></div>
-    <div class="newQuiz">
-        <p>Pergunta 1</p>
+    document.querySelector("main").innerHTML = '<div><p>Crie suas Perguntas</p></div>'
+    for(i=1;i<=numberQuestions;i++){
+        document.querySelector("main").innerHTML += `    
+          <div class="newQuiz">
+          <p>Pergunta ${i}</p> 
+          <img onclick="editQuestion(this) "src="img/Vector.png">
+          </div>
+          `;  
+        }
+        document.querySelector("main").innerHTML += `<button class='createQuestions' onclick="checkQuestionValidation()">Prosseguir pra criar níveis</button>`
+}
+
+function editQuestion(element){
+    const questionSelected = element.parentNode.querySelector("p").innerHTML
+    element.parentNode.innerHTML = `
+        <p>${questionSelected}</p>
         <div>
             <input type="text" placeholder="Texto da pergunta">
             <input type="text" placeholder="Cor de fundo da pergunta">
@@ -90,30 +105,16 @@ function creattingQuestions() {
         <div>
             <input type="text" placeholder="Resposta incorreta 3">
             <input type="text" placeholder="URL da imagem3">
-        </div>
-        <div>
-            <input type="text" placeholder="Resposta incorreta 4">
-            <input type="text" placeholder="URL da imagem4">
-        </div>
-    </div>
-    <button onclick="checkQuestionValidation()">Prosseguir pra criar níveis</button>
-`;
+        </div>`
 }
 
 function gettingQuestion() {
-  newQuizQuestion = document
-    .querySelector(".newQuiz")
-    .querySelector("div:nth-child(2)")
-    .querySelector("input:first-child").value;
-  newQuizColor = document
-    .querySelector(".newQuiz")
-    .querySelector("div:nth-child(2)")
-    .querySelector("input:last-child").value;
+    inputsArray = document.querySelectorAll("input")
   if (
-    newQuizQuestion != "" &&
-    newQuizQuestion.length > 19 &&
-    newQuizColor[0] === "#" &&
-    newQuizColor.length === 7
+    inputsArray[0].value != "" &&
+    inputsArray[0].value.length > 19 &&
+    inputsArray[1].value[0] === "#" &&
+    inputsArray[1].value.length === 7
   ) {
     return true;
   } else {
@@ -122,15 +123,8 @@ function gettingQuestion() {
 }
 
 function gettingCorrectAnswer() {
-  correctAnswer = document
-    .querySelector(".newQuiz")
-    .querySelector("div:nth-child(4)")
-    .querySelector("input:first-child").value;
-  urlImage = document
-    .querySelector(".newQuiz")
-    .querySelector("div:nth-child(4)")
-    .querySelector("input:last-child").value;
-  if (correctAnswer != "" && isImage(urlImage) === true) {
+    inputsArray = document.querySelectorAll("input")
+  if (inputsArray[2].value != "" && isImage(inputsArray[3].value) === true) {
     return true;
   } else {
     return false;
@@ -138,34 +132,11 @@ function gettingCorrectAnswer() {
 }
 
 function gettingWrongAnswer() {
-  wrongAnswer1 = document
-    .querySelector(".newQuiz")
-    .querySelector("div:nth-child(6)")
-    .querySelector("input:first-child").value;
-  urlImage1 = document
-    .querySelector(".newQuiz")
-    .querySelector("div:nth-child(6)")
-    .querySelector("input:last-child").value;
-  wrongAnswer2 = document
-    .querySelector(".newQuiz")
-    .querySelector("div:nth-child(7)")
-    .querySelector("input:first-child").value;
-  urlImage2 = document
-    .querySelector(".newQuiz")
-    .querySelector("div:nth-child(7)")
-    .querySelector("input:last-child").value;
-  wrongAnswer3 = document
-    .querySelector(".newQuiz")
-    .querySelector("div:nth-child(8)")
-    .querySelector("input:first-child").value;
-  urlImage3 = document
-    .querySelector(".newQuiz")
-    .querySelector("div:nth-child(8)")
-    .querySelector("input:last-child").value;
+    inputsArray = document.querySelectorAll("input")
   if (
-    (wrongAnswer1 != "" && isImage(urlImage1)) ||
-    (wrongAnswer3 != "" && isImage(urlImage2)) ||
-    (wrongAnswer3 != "" && isImage(urlImage3))
+    (inputsArray[4].value != "" && isImage(inputsArray[5].value)) ||
+    (inputsArray[6].value != "" && isImage(inputsArray[7].value)) ||
+    (inputsArray[8].value != "" && isImage(inputsArray[9].value))
   ) {
     return true;
   } else {

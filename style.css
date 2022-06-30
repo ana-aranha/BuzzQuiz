@@ -50,7 +50,6 @@ main > div {
   display: flex;
   flex-wrap: wrap;
   margin-top: 7.7rem;
-  justify-content: center;
 }
 
 /*Botei a altura e o TESTE só pra não ter espaço vazio*/
@@ -100,6 +99,7 @@ main > div {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 3rem;
 }
 .nonQuizzes h1 {
@@ -118,6 +118,17 @@ main > div {
   border-radius: 5rem;
   color: #ec362d;
   cursor: pointer;
+}
+
+.otherQuizzes{
+    position: relative;
+}
+
+.tittleQuizzes{
+    position: absolute;
+    top: -2.2rem;
+    left: 0;
+    font-size: 2rem;
 }
 
 .quizzStyle {
@@ -157,10 +168,14 @@ main > div {
   box-shadow: 0rem 0rem 0.1rem rgba(0, 0, 0, 0.05);
   flex-direction: column;
   justify-content: center;
+  position: relative;
 }
 
-.newQuiz div {
-  margin: 1.2rem 1.6rem;
+.newQuiz img{
+    position: absolute;
+    height: 2.3rem;
+    top: 2.7rem;
+    right: 2.4rem;
 }
 
 .newQuiz input {
@@ -186,9 +201,10 @@ main > div {
   border-radius: 1.5rem;
   font-size: 2rem;
   color: #fff5f4;
-  margin-top: 8.5rem;
+  margin: 8.5rem 0;
   cursor: pointer;
 }
+
 
 @media (max-width: 1050px) {
   main {
@@ -198,8 +214,15 @@ main > div {
 
   main > div {
     flex-direction: column;
-    align-items: center;
     margin-top: 3rem;
+  }
+
+  .newQuiz{
+    width: 100%;
+  }
+
+  .newQuiz input {
+    width: 100%;
   }
 
   .quizzStyle {
