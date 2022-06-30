@@ -48,7 +48,8 @@ function isImage(url) {
 
 function renderQuiz(resposta) {
   quizzes = resposta.data;
-  for (let i = 0; i < quizzes.length; i++) {
+  document.querySelector(".otherQuizzes").innerHTML = '<p class="tittleQuizzes">Todos os Quizes</p>'
+  for (let i = 0; i < quizzes.length-1; i++) {
     if (isImage(quizzes[i].image)) {
       document.querySelector(".otherQuizzes").innerHTML += `
         <div class='quizzStyle' onclick='openQuizz(this)'>
