@@ -122,6 +122,7 @@ main > div {
 
 .otherQuizzes{
     position: relative;
+    width: 100%;
 }
 
 .tittleQuizzes{

@@ -12,6 +12,7 @@ let urlImage3;
 let inputsArray
 let numberQuestions = 0;
 let numberLevels = 0;
+let counter = 0;
 const userNewQuiz = {
   title: "",
   image: "",
@@ -77,7 +78,7 @@ function creattingQuestions() {
           </div>
           `;  
         }
-        document.querySelector("main").innerHTML += `<button class='createQuestions' onclick="checkQuestionValidation()">Prosseguir pra criar níveis</button>`
+        document.querySelector("main").innerHTML += `<button class='createQuestions' onclick="checkQuestions()">Prosseguir pra criar níveis</button>`
 }
 
 function editQuestion(element){
@@ -108,8 +109,11 @@ function editQuestion(element){
         </div>`
 }
 
-function gettingQuestion() {
-    inputsArray = document.querySelectorAll("input")
+function gettingQuestion(element) {
+    let inputsArray = element.querySelectorAll("input")
+  if(inputsArray.length === 0){
+    return
+  }
   if (
     inputsArray[0].value != "" &&
     inputsArray[0].value.length > 19 &&
@@ -122,17 +126,23 @@ function gettingQuestion() {
   }
 }
 
-function gettingCorrectAnswer() {
-    inputsArray = document.querySelectorAll("input")
-  if (inputsArray[2].value != "" && isImage(inputsArray[3].value) === true) {
+function gettingCorrectAnswer(element) {
+    let inputsArray = element.querySelectorAll("input")
+    if(inputsArray.length === 0){
+      return
+    }
+  if (inputsArray[2].value != "" && isImage(inputsArray[3].value)) {
     return true;
   } else {
     return false;
   }
 }
 
-function gettingWrongAnswer() {
-    inputsArray = document.querySelectorAll("input")
+function gettingWrongAnswer(element) {
+    let inputsArray = element.querySelectorAll("input")
+    if(inputsArray.length === 0){
+      return
+    }
   if (
     (inputsArray[4].value != "" && isImage(inputsArray[5].value)) ||
     (inputsArray[6].value != "" && isImage(inputsArray[7].value)) ||
@@ -144,16 +154,26 @@ function gettingWrongAnswer() {
   }
 }
 
-function checkQuestionValidation() {
-  if (
-    gettingQuestion() === true &&
-    gettingCorrectAnswer() === true &&
-    gettingWrongAnswer() === true
-  ) {
+function checkQuestions(){
+  questionsArray = document.querySelectorAll(".newQuiz")
+  for(i=0;i<questionsArray.length;i++){
+    checkQuestionValidation(questionsArray[i])
+  }
+  if (counter === numberQuestions){
     creattingQuizLevels();
+    counter = 0
   } else {
     alert("Preencha os campos corretamentes");
+    counter = 0
   }
+}
+
+function checkQuestionValidation(element) {
+  if (
+    gettingQuestion(element) === true &&
+    gettingCorrectAnswer(element) === true &&
+    gettingWrongAnswer(element) === true
+  ) { counter ++}
 }
 
 function creattingQuizLevels() {
