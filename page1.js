@@ -1,12 +1,18 @@
 let linkBuzzQuiz = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
 let quizzes;
 let userStorage = [];
-let prepareStorage = JSON.stringify(userStorage);
-localStorage.setItem("quizzes", prepareStorage);
-localStorage.setItem("quizzes", prepareStorage);
 function getQuiz() {
   let promise = axios.get(linkBuzzQuiz);
   promise.then(renderQuiz);
+}
+
+function setStorage(obj) {
+  userStorage.push(obj);
+  let prepareStorage = JSON.stringify(userStorage);
+  localStorage.setItem("userQuizzes", prepareStorage);
+}
+function getStorage() {
+  userStorage = JSON.parse(localStorage.getItem("userQuizzes"));
 }
 
 function yourQuizzes() {
@@ -25,19 +31,18 @@ function yourQuizzes() {
                 <h1>Seus Quizzes</h1>
                 <button><img src='img/button.svg' onclick='creattingQuiz()'></button>
             </div>
-            <div class='userQuizzes'>
-                <div class="quizz">
-                <img src='img/quizz1.png'>
-                <p>O quão Potterhead é você?</p>
-                </div> 
-                <div class="quizz">
-                <img src='img/quizz1.png'>
-                <p>O quão Potterhead é você?</p>
-                </div> 
-            </div>
+            <div class='userQuizzes'></div> 
         </div>
         <div class='otherQuizzes'></div>;
       `;
+    const myQuizzes = document.querySelector(".userQuizzes");
+    for (quiz of userStorage) {
+      myQuizzes.innerHTML += `
+                <div class="quizzStyle">
+                <img src='${quiz.image}'>
+                <p>${quiz.title}</p>
+                </div> `;
+    }
   }
 }
 
@@ -60,5 +65,6 @@ function renderQuiz(resposta) {
   }
 }
 
+getQuiz();
 yourQuizzes();
 getQuiz();

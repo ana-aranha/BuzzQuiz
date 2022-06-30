@@ -242,7 +242,12 @@ function endLevels() {
   }
   if (validation !== 0) {
     userNewQuiz.levels = sendLevels;
-    console.dir(userNewQuiz);
+    axios
+      .post(
+        "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes",
+        userNewQuiz
+      )
+      .then(setStorage);
   } else {
     alert("Pelo menos um dos níveis deve ter uma porcentagem de acerto 0");
   }
