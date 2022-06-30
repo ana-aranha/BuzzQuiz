@@ -16,7 +16,7 @@ function yourQuizzes() {
     main.innerHTML = `
         <div class='nonQuizzes'>
         <h1>Você não criou nenhum</br>quizz ainda :(</h1>
-        <button onclick=''>Criar Quizz</button>
+        <button onclick='creattingQuiz()'>Criar Quizz</button>
         </div>
         <div class='otherQuizzes'></div>`;
   } else {
@@ -24,7 +24,7 @@ function yourQuizzes() {
         <div class='userSection'>
             <div class='sectionTitle'>
                 <h1>Seus Quizzes</h1>
-                <button><img src='img/button.svg' onclick=''></button>
+                <button><img src='img/button.svg' onclick='creattingQuiz()'></button>
             </div>
             <div class='userQuizzes'>
                 <div class="quizz">
@@ -38,7 +38,6 @@ function yourQuizzes() {
             </div>
         </div>
         <div class='otherQuizzes'></div>;
-        
       `;
   }
 }
