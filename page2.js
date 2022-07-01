@@ -36,7 +36,7 @@ function renderQuestions(){
         let answersDiv = "";
         for(x=0;x<answersArray.length;x++){
             answersDiv +=
-            `<div>
+            `<div onclick="selectAnswer(this)">
                 <img src="${quizzSelectedQuestions[i].answers[x].image}">
                 <p>${quizzSelectedQuestions[i].answers[x].text}</p>
             </div>`
@@ -52,4 +52,10 @@ function renderQuestions(){
 
     const element = document.querySelector('.demo');
 element.style.backgroundColor = 'red';
+}
+
+function selectAnswer(element){
+    let questionSelected = element.parentNode;
+    questionSelected.classList.add('opacity')
+    element.classList.add('notOpacity')
 }

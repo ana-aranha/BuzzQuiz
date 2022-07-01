@@ -287,8 +287,6 @@ main > div {
   width: 75.9rem;
   flex-direction: column;
   padding: 3.7rem;
-  position: initial;
-  z-index: -1;
 }
 
 .quizzQuestions > div:last-child{
@@ -316,7 +314,15 @@ main > div {
   height: 17.5rem;
   position: relative;
   border-radius: 0.5rem;
-  z-index: -1;}
+  }
+
+  .opacity img{
+    opacity: 0.3;
+  }
+
+  .notOpacity img{
+    opacity: inherit;
+  }
 
 .quizzQuestions p {
     color: #ffffff;
