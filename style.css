@@ -208,6 +208,78 @@ main > div {
   cursor: pointer;
 }
 
+.topImage{
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 10rem;
+  position: absolute;
+  top: -1rem;
+}
+
+.topImage img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  z-index: -1;
+}
+
+.quizzQuestions{
+  background-color: #FFFFFF;
+  box-shadow: 0rem 0rem 0.1rem rgba(0, 0, 0, 0.05);
+  width: 75.9rem;
+  flex-direction: column;
+  margin-top: 12rem;
+  padding: 3.7rem;
+  position: absolute;
+  z-index: -1;
+}
+
+.quizzQuestions > div:last-child{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3.7rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.9rem;
+}
+
+.quizzQuestions > div:last-child div{
+  width: 32.8rem;
+}
+
+.quizzQuestions > div:last-child div p{
+  font-weight: 700;
+  color: black;
+  font-size: 1.8rem;
+  line-height: 1.9rem;
+}
+
+.quizzQuestions img{
+  width: 32.8rem;
+  height: 17.5rem;
+  position: relative;
+  border-radius: 0.5rem;
+  z-index: -1;}
+
+.quizzQuestions p {
+    color: #ffffff;
+    font-size: 2.0rem;
+    font-weight: 400;
+    line-height: 2.2rem;
+    word-break: break-word;
+    text-align: center;
+  }
+
+.questionTop{
+  background-color: lightcoral;
+  width: 100%; /*98.7rem*/
+  height: 13.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (max-width: 1050px) {
   main {
     padding: 0 2rem;
@@ -236,4 +308,33 @@ main > div {
     width: 100%;
     height: 38%;
   }
+
+  .questionTop{
+    height: 20vw;
+  }
+
+  .topImage{
+    top: 3rem;
+  }
+
+  .quizzQuestions{
+    width: 100%;
+    padding: 2rem;
+  }
+  .quizzQuestions > div:last-child{
+    gap: 0.2%;
+    margin-top: 0;
+  }
+
+  .quizzQuestions > div:last-child div{
+    width: 49%;
+    margin-top: 2.5rem;
+  }
+
+  .quizzQuestions img{
+    width: 100%;
+    height: 25vw;
+  }
+
+  
 }
