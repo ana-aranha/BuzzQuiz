@@ -234,7 +234,7 @@ main > div {
 }
 
 .createQuestions {
-  width: 37rem;
+  max-width: 37rem;
   height: 5.4rem;
   background-color: #ec362d;
   border: none;
@@ -352,6 +352,14 @@ main > div {
   }
 
   .newQuiz input {
+    width: 100%;
+  }
+
+  .infoNewQuiz{
+    padding: 2rem 0;
+  }
+
+  .infoNewQuiz input{
     width: 100%;
   }
 
