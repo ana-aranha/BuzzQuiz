@@ -1,18 +1,7 @@
-let newQuizQuestion;
-let newQuizColor;
-let correctAnswer;
-let urlImage;
-let wrongAnswer1;
-let urlImage1;
-let wrongAnswer2;
-let urlImage2;
-let wrongAnswer3;
-let urlImage3;
-let inputsArray;
 let numberQuestions = 0;
 let numberLevels = 0;
 let counter = 0;
-let wrongOption;
+let valor;
 const userNewQuiz = {
   title: "",
   image: "",
@@ -128,6 +117,7 @@ function gettingQuestion(element) {
   ) {
     return true;
   } else {
+    console.log("pergunta direito");
     return false;
   }
 }
@@ -140,6 +130,7 @@ function gettingCorrectAnswer(element) {
   if (inputsArray[2].value != "" && isImage(inputsArray[3].value)) {
     return true;
   } else {
+    console.log("resposta correta deu ruim");
     return false;
   }
 }
@@ -163,25 +154,25 @@ function gettingWrongAnswer(element) {
   if (wrongOption > 0) {
     return true;
   } else if (wrongOption === 0) {
+    console.log("deu ruim");
     return false;
   }
 }
 
 function questionObject(element) {
+  console.log("heeeelp");
   let inputsArray = element.querySelectorAll("input");
-  let wrong = [
-    {
-      title: `${inputsArray[0].value}`,
-      color: `${inputsArray[1].value}`,
-      answers: [
-        {
-          text: `${inputsArray[2].value}`,
-          image: `${inputsArray[3].value}`,
-          isCorrectAnswer: true,
-        },
-      ],
-    },
-  ];
+  let wrong = {
+    title: `${inputsArray[0].value}`,
+    color: `${inputsArray[1].value}`,
+    answers: [
+      {
+        text: `${inputsArray[2].value}`,
+        image: `${inputsArray[3].value}`,
+        isCorrectAnswer: true,
+      },
+    ],
+  };
   for (i = 0; i <= wrongOption + 1; i += 2) {
     if (inputsArray[4 + i].value !== "") {
       wrong.answers.push({
@@ -191,16 +182,20 @@ function questionObject(element) {
       });
     }
   }
+  userNewQuiz.questions.push(wrong);
+  console.log(userNewQuiz);
+  return;
 }
 
 function checkQuestions() {
   questionsArray = document.querySelectorAll(".newQuiz");
   for (i = 0; i < questionsArray.length; i++) {
+    console.log("foor");
     checkQuestionValidation(questionsArray[i]);
   }
   if (counter === numberQuestions) {
-    creattingQuizLevels();
     counter = 0;
+    creattingQuizLevels();
   } else {
     alert("Preencha os campos corretamentes");
     counter = 0;
@@ -214,6 +209,7 @@ function checkQuestionValidation(element) {
     gettingWrongAnswer(element) === true
   ) {
     counter++;
+    console.log(counter);
     questionObject(element);
   }
 }

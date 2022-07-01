@@ -58,7 +58,7 @@ function renderQuiz(resposta) {
   for (let i = 0; i < quizzes.length; i++) {
     if (isImage(quizzes[i].image)) {
       document.querySelector(".otherQuizzes").innerHTML += `
-        <div class='quizzStyle' onclick='openQuizz(this)'>
+        <div class='quizzStyle' id=${quizzes[i].id} onclick='openQuizz(this)'>
         <img src='${quizzes[i].image}'>
         <p class='quizzTitle'>${quizzes[i].title}</p>
         <div>`;
