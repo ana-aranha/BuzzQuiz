@@ -210,7 +210,7 @@ function checkQuestionValidation(element) {
   ) {
     counter++;
     console.log(counter);
-    questionObject(element);
+    //questionObject(element);
   }
 }
 

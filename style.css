@@ -46,6 +46,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 main > div {
@@ -242,20 +243,32 @@ main > div {
   cursor: pointer;
 }
 
+/*Abrir um quizz*/
+
 .topImage{
   background-color: rgba(0, 0, 0, 0.6);
   width: 100vw;
   height: 10rem;
   position: absolute;
-  top: -1rem;
+  top: -7.7rem;
 }
 
 .topImage img{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: absolute;
+  position: inherit;
   z-index: -1;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container > div:first-child{
+  margin-top: 4rem;
 }
 
 .quizzQuestions{
@@ -263,9 +276,8 @@ main > div {
   box-shadow: 0rem 0rem 0.1rem rgba(0, 0, 0, 0.05);
   width: 75.9rem;
   flex-direction: column;
-  margin-top: 12rem;
   padding: 3.7rem;
-  position: absolute;
+  position: initial;
   z-index: -1;
 }
 
@@ -348,12 +360,15 @@ main > div {
   }
 
   .topImage{
-    top: 3rem;
+    top: -3rem;
   }
 
+  .container > div:first-child{
+    margin-top: 8rem;
+  }
   .quizzQuestions{
     width: 100%;
-    padding: 2rem;
+    padding: 2rem 0;
   }
   .quizzQuestions > div:last-child{
     gap: 0.2%;
