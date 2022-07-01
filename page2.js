@@ -42,10 +42,13 @@ function renderQuestions(){
         }
         questionsDiv.innerHTML += 
         `<div class='quizzQuestions'>
-            <div class='questionTop'>
+            <div class='questionTop' style="background-color:${quizzSelectedQuestions[i].color}">
                 <p>${quizzSelectedQuestions[i].title}<p>
             </div>
             <div>${answersDiv}</div>
         </div>`
     }
+
+    const element = document.querySelector('.demo');
+element.style.backgroundColor = 'red';
 }
