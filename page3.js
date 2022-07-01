@@ -23,7 +23,7 @@ const userNewQuiz = {
 function creattingQuiz() {
   document.querySelector("main").innerHTML = `
     <div><p>Comece pelo começo<p></div>
-    <div class='newQuiz'>
+    <div class='infoNewQuiz'>
     <input type='text' placeholder='Título do seu quizz'>
     <input type='text' placeholder='URL da imagem do seu quizz'>
     <input type='text' placeholder='Quantidade de perguntas do quizz'>
@@ -75,13 +75,17 @@ function creattingQuestions() {
           <p>Pergunta ${i}</p> 
           <img onclick="editQuestion(this) "src="img/Vector.png">
           </div>
-          `;  
-        }
-        document.querySelector("main").innerHTML += `<button class='createQuestions' onclick="checkQuestions()">Prosseguir pra criar níveis</button>`
+          `;
+  }
+  document.querySelector(
+    "main"
+  ).innerHTML += `<button class='createQuestions' onclick="checkQuestions()">Prosseguir pra criar níveis</button>`;
 }
 
 function editQuestion(element) {
   const questionSelected = element.parentNode.querySelector("p").innerHTML;
+  const parent = element.parentNode;
+  parent.style.height = "82.5rem";
   element.parentNode.innerHTML = `
         <p>${questionSelected}</p>
         <div>
@@ -106,12 +110,15 @@ function editQuestion(element) {
             <input type="text" placeholder="Resposta incorreta 3">
             <input type="text" placeholder="URL da imagem3">
         </div>`;
+  setTimeout(() => {
+    parent.scrollIntoView({ block: "center" });
+  }, 1000);
 }
 
 function gettingQuestion(element) {
-    let inputsArray = element.querySelectorAll("input")
-  if(inputsArray.length === 0){
-    return
+  let inputsArray = element.querySelectorAll("input");
+  if (inputsArray.length === 0) {
+    return;
   }
   if (
     inputsArray[0].value != "" &&
@@ -126,10 +133,10 @@ function gettingQuestion(element) {
 }
 
 function gettingCorrectAnswer(element) {
-  let inputsArray = element.querySelectorAll("input")
-    if(inputsArray.length === 0){
-      return
-    }
+  let inputsArray = element.querySelectorAll("input");
+  if (inputsArray.length === 0) {
+    return;
+  }
   if (inputsArray[2].value != "" && isImage(inputsArray[3].value)) {
     return true;
   } else {
@@ -138,66 +145,65 @@ function gettingCorrectAnswer(element) {
 }
 
 function gettingWrongAnswer(element) {
-    let inputsArray = element.querySelectorAll("input")
-    let wrongOption = 0
-    if(inputsArray.length === 0){
-      return
-    }
-    if (inputsArray[4].value != "" && isImage(inputsArray[5].value)){
-      wrongOption ++
-    }
-    if(inputsArray[6].value != "" && isImage(inputsArray[7].value)){
-      wrongOption ++
-    }
-    if(inputsArray[8].value != "" && isImage(inputsArray[9].value)){
-      wrongOption ++
-    }
-    console.log(wrongOption)
-    if(wrongOption >0)
-    {
-        return true;
-      } else if (wrongOption == 0){
-        return false;
-      }
-    }
-
-/*function questionObject(element){
-  let inputsArray = element.querySelectorAll("input")
-  let wrong = ""
-  console.log(valor)
-      for(i=0;i<=valor+1;i+=2){
-        wrong = wrong + `,{
-          text: ${inputsArray[4+i].value},
-          image: ${inputsArray[5+i].value},
-          isCorrectAnswer: false
-        }`
-      }
-    let question = (`
-      {
-        title: "${inputsArray[0].value}",
-        color: "${inputsArray[1].value}",
-        answers: [
-            {
-              text: "${inputsArray[2].value}",
-              image: "${inputsArray[3].value}",
-              isCorrectAnswer: true
-            }${wrong}
-          ]
-        }`)
-      console.log(question)
-    }*/
-    
-function checkQuestions(){
-  questionsArray = document.querySelectorAll(".newQuiz")
-  for(i=0;i<questionsArray.length;i++){
-    checkQuestionValidation(questionsArray[i])
+  let inputsArray = element.querySelectorAll("input");
+  wrongOption = 0;
+  if (inputsArray.length === 0) {
+    return;
   }
-  if (counter === numberQuestions){
+  if (inputsArray[4].value != "" && isImage(inputsArray[5].value)) {
+    wrongOption++;
+  }
+  if (inputsArray[6].value != "" && isImage(inputsArray[7].value)) {
+    wrongOption++;
+  }
+  if (inputsArray[8].value != "" && isImage(inputsArray[9].value)) {
+    wrongOption++;
+  }
+  console.log(wrongOption);
+  if (wrongOption > 0) {
+    return true;
+  } else if (wrongOption === 0) {
+    return false;
+  }
+}
+
+function questionObject(element) {
+  let inputsArray = element.querySelectorAll("input");
+  let wrong = [
+    {
+      title: `${inputsArray[0].value}`,
+      color: `${inputsArray[1].value}`,
+      answers: [
+        {
+          text: `${inputsArray[2].value}`,
+          image: `${inputsArray[3].value}`,
+          isCorrectAnswer: true,
+        },
+      ],
+    },
+  ];
+  for (i = 0; i <= wrongOption + 1; i += 2) {
+    if (inputsArray[4 + i].value !== "") {
+      wrong.answers.push({
+        text: `${inputsArray[4 + i].value}`,
+        image: `${inputsArray[5 + i].value}`,
+        isCorrectAnswer: false,
+      });
+    }
+  }
+}
+
+function checkQuestions() {
+  questionsArray = document.querySelectorAll(".newQuiz");
+  for (i = 0; i < questionsArray.length; i++) {
+    checkQuestionValidation(questionsArray[i]);
+  }
+  if (counter === numberQuestions) {
     creattingQuizLevels();
-    counter = 0
+    counter = 0;
   } else {
     alert("Preencha os campos corretamentes");
-    counter = 0
+    counter = 0;
   }
 }
 
@@ -206,11 +212,11 @@ function checkQuestionValidation(element) {
     gettingQuestion(element) === true &&
     gettingCorrectAnswer(element) === true &&
     gettingWrongAnswer(element) === true
-  ) { counter ++
-     //questionObject(element)
+  ) {
+    counter++;
+    questionObject(element);
   }
 }
-
 
 function creattingQuizLevels() {
   const main = document.querySelector("main");
@@ -228,18 +234,21 @@ function creattingQuizLevels() {
 }
 function editLevel(element) {
   const parent = element.parentNode;
+  parent.style.height = "27.2rem";
   const levelSelected = parent.querySelector("p").innerHTML;
   parent.innerHTML = `
         <p>${levelSelected}</p>
-        <div class="level${levelSelected.charAt(levelSelected.length - 1)}">
+        <div class="level${levelSelected.charAt(
+          levelSelected.length - 1
+        )} choices">
             <input type="text" placeholder="Título do nível">
             <input type="text" placeholder="% de acerto mínima">
             <input type="text" placeholder="URL da imagem">
             <input type="text" placeholder="Descrição do nível">
         </div>`;
-  const lastChild = parent.querySelector("div").lastElementChild;
-  console.dir(lastChild);
-  lastChild.scrollIntoView();
+  setTimeout(() => {
+    parent.scrollIntoView({ block: "center" });
+  }, 1000);
 }
 function endLevels() {
   let validation = 0;
@@ -308,3 +317,6 @@ function endLevels() {
     alert("Pelo menos um dos níveis deve ter uma porcentagem de acerto 0");
   }
 }
+
+/* creattingQuizLevels();
+ */
