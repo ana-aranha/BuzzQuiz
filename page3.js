@@ -1,7 +1,8 @@
-let numberQuestions = 0;
+let numberQuestions = 3;
 let numberLevels = 0;
 let counter = 0;
 let valor;
+let wrongOption = 0;
 const userNewQuiz = {
   title: "",
   image: "",
@@ -105,6 +106,26 @@ function editQuestion(element) {
 }
 
 function gettingQuestion(element) {
+  let validation = 0;
+  const hex = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "#",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "0",
+  ];
   let inputsArray = element.querySelectorAll("input");
   if (inputsArray.length === 0) {
     return;
@@ -115,9 +136,17 @@ function gettingQuestion(element) {
     inputsArray[1].value[0] === "#" &&
     inputsArray[1].value.length === 7
   ) {
+    for (letter of inputsArray[1].value) {
+      if (hex.includes(letter)) {
+        validation++;
+      }
+    }
+  } else {
+    return false;
+  }
+  if (validation === 7) {
     return true;
   } else {
-    console.log("pergunta direito");
     return false;
   }
 }
@@ -130,7 +159,6 @@ function gettingCorrectAnswer(element) {
   if (inputsArray[2].value != "" && isImage(inputsArray[3].value)) {
     return true;
   } else {
-    console.log("resposta correta deu ruim");
     return false;
   }
 }
@@ -189,9 +217,9 @@ function questionObject(element) {
 
 function checkQuestions() {
   questionsArray = document.querySelectorAll(".newQuiz");
-  for (i = 0; i < questionsArray.length; i++) {
-    console.log("foor");
-    checkQuestionValidation(questionsArray[i]);
+  console.log(questionsArray);
+  for (x = 0; x < questionsArray.length; x++) {
+    checkQuestionValidation(questionsArray[x]);
   }
   if (counter === numberQuestions) {
     counter = 0;
@@ -203,15 +231,20 @@ function checkQuestions() {
 }
 
 function checkQuestionValidation(element) {
+  console.log(element);
   if (
-    gettingQuestion(element) === true &&
-    gettingCorrectAnswer(element) === true &&
-    gettingWrongAnswer(element) === true
+    gettingQuestion(element) &&
+    gettingCorrectAnswer(element) &&
+    gettingWrongAnswer(element)
   ) {
     counter++;
     console.log(counter);
-    //questionObject(element);
+    questionObject(element);
+  } else {
+    console.log("elemento q deu merda");
+    console.log(element);
   }
+  return;
 }
 
 function creattingQuizLevels() {
@@ -313,6 +346,3 @@ function endLevels() {
     alert("Pelo menos um dos níveis deve ter uma porcentagem de acerto 0");
   }
 }
-
-/* creattingQuizLevels();
- */
