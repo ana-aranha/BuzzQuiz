@@ -346,7 +346,3 @@ function endLevels() {
     alert("Pelo menos um dos níveis deve ter uma porcentagem de acerto 0");
   }
 }
-
-/* creattingQuizLevels();
- */
-creattingQuestions();

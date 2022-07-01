@@ -66,7 +66,6 @@ function renderQuiz(resposta) {
   }
 }
 
-/* getQuiz();
+getQuiz();
 yourQuizzes();
 getQuiz();
- */
