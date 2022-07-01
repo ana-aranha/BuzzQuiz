@@ -253,6 +253,14 @@ main > div {
   height: 10rem;
   position: absolute;
   top: -7.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topImage p {
+  color: #FFFFFF;
+  text-align: center;
 }
 
 .topImage img{

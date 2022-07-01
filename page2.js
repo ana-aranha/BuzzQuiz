@@ -21,6 +21,7 @@ function printObject(response){
     main.innerHTML = `
     <div class ='topImage'>
     <img src="${quizzObject.image}">
+    <p>${quizzObject.title}</p>
     </div>
     <div class='container'></div>
 `
