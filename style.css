@@ -42,6 +42,7 @@ header {
 main {
   width: 105rem;
   height: 100%;
+  margin: 0 auto;
   margin-top: 6.9rem;
   display: flex;
   flex-direction: column;
@@ -163,9 +164,10 @@ main > div {
 
 .infoNewQuiz {
   background-color: #ffffff;
-  width: 57%;
+  max-width: 60rem;
   height: 25.6rem;
   padding: 2rem 2rem;
+  display: block;
   gap: 0.9rem;
   margin: 2.7rem auto 0 auto;
   box-shadow: 0rem 0rem 0.1rem rgba(0, 0, 0, 0.05);
@@ -196,7 +198,7 @@ main > div {
   box-shadow: 0rem 0rem 0.1rem rgba(0, 0, 0, 0.05);
   justify-content: flex-start;
   position: relative;
-  overflow-y: hidden;
+  overflow: hidden;
 
   transition: height 1000ms;
 }
@@ -245,7 +247,7 @@ main > div {
 @media (max-width: 1050px) {
   main {
     padding: 0 2rem;
-    width: 95%;
+    width: 100%;
   }
 
   main > div {
