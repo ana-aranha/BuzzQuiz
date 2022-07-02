@@ -1,6 +1,7 @@
 //Página de um quizz
 let quizzObject;
 let quizzSelectedQuestions;
+let counterLevel = 0
 
 
 function comparador() { 
@@ -36,7 +37,7 @@ function renderQuestions(){
         let answersDiv = "";
         for(x=0;x<answersArray.length;x++){
             answersDiv +=
-            `<div onclick="selectAnswer(this)">
+            `<div onclick="selectAnswer(this)" class="${quizzSelectedQuestions[i].answers[x].isCorrectAnswer}">
                 <img src="${quizzSelectedQuestions[i].answers[x].image}">
                 <p>${quizzSelectedQuestions[i].answers[x].text}</p>
             </div>`
@@ -49,13 +50,37 @@ function renderQuestions(){
             <div>${answersDiv}</div>
         </div>`
     }
-
-    const element = document.querySelector('.demo');
-element.style.backgroundColor = 'red';
 }
 
 function selectAnswer(element){
     let questionSelected = element.parentNode;
-    questionSelected.classList.add('opacity')
-    element.classList.add('notOpacity')
+    let next = questionSelected.parentNode.nextElementSibling
+    let questionOptions = questionSelected.querySelectorAll("div")
+    if(questionSelected.querySelector(".rigth") === null){
+        for(let i=0; i<questionOptions.length;i++){
+            questionOptions[i].classList.add('opacity')
+            if(questionOptions[i].classList.contains('false')){
+                questionOptions[i].classList.add('wrong')
+            }
+            else{questionOptions[i].classList.add('rigth')}
+        }
+        if(element.classList.contains('true')){
+            counterLevel ++
+        }
+        console.log(counterLevel)
+        element.classList.remove('opacity')
+
+    }
+
+    setTimeout(() => {
+        next.scrollIntoView({ behavior:'smooth', block: "center" });
+      }, 2000)
+
+      if(document.querySelectorAll(".rigth").length === quizzSelectedQuestions.length){
+        showResults()
+      }
+}
+
+function showResults(){
+    console.log('respondeu tudo!')
 }

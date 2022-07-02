@@ -302,12 +302,7 @@ main > div {
   width: 32.8rem;
 }
 
-.quizzQuestions > div:last-child div p{
-  font-weight: 700;
-  color: black;
-  font-size: 1.8rem;
-  line-height: 1.9rem;
-}
+
 
 .quizzQuestions img{
   width: 32.8rem;
@@ -316,25 +311,26 @@ main > div {
   border-radius: 0.5rem;
   }
 
-  .opacity img{
+  .quizzQuestions p{
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: black;
+    line-height: 1.9rem;
+  }
+  .opacity{
     opacity: 0.3;
   }
-
-  .notOpacity img{
-    opacity: inherit;
+  
+  .rigth p{
+    color: green;
   }
 
-.quizzQuestions p {
-    color: #ffffff;
-    font-size: 2.0rem;
-    font-weight: 400;
-    line-height: 2.2rem;
-    word-break: break-word;
-    text-align: center;
+  .wrong p{
+    color: #ec362d;
   }
 
-.questionTop{
-  background-color: lightcoral;
+  .questionTop{
+    background-color: lightcoral;
   width: 100%; /*98.7rem*/
   height: 13.9rem;
   display: flex;
@@ -342,6 +338,14 @@ main > div {
   justify-content: center;
 }
 
+.questionTop p {
+  color: #ffffff;
+  font-size: 2.0rem;
+  font-weight: 400;
+  line-height: 2.2rem;
+  word-break: break-word;
+  text-align: center;
+}
 @media (max-width: 1050px) {
   main {
     padding: 0 2rem;
@@ -392,7 +396,7 @@ main > div {
   }
   .quizzQuestions{
     width: 100%;
-    padding: 2rem 0;
+    padding: 5rem 0;
   }
   .quizzQuestions > div:last-child{
     gap: 0.2%;

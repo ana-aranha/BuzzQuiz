@@ -48,7 +48,7 @@ function yourQuizzes() {
 }
 
 function isImage(url) {
-  return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+  return (/\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url) && url.startsWith('http'));
 }
 
 function renderQuiz(resposta) {
@@ -59,12 +59,13 @@ function renderQuiz(resposta) {
     if (isImage(quizzes[i].image)) {
       document.querySelector(".otherQuizzes").innerHTML += `
         <div class='quizzStyle' id=${quizzes[i].id} onclick='openQuizz(this)'>
-        <img src='${quizzes[i].image}'>
+      <img src='${quizzes[i].image}' onerror="">
         <p class='quizzTitle'>${quizzes[i].title}</p>
         <div>`;
     }
   }
 }
+
 
 getQuiz();
 yourQuizzes();
