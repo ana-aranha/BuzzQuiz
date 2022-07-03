@@ -188,7 +188,6 @@ function gettingWrongAnswer(element) {
 }
 
 function questionObject(element) {
-  console.log("heeeelp");
   let inputsArray = element.querySelectorAll("input");
   let wrong = {
     title: `${inputsArray[0].value}`,
@@ -341,7 +340,10 @@ function endLevels() {
         "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes",
         userNewQuiz
       )
-      .then(setStorage);
+      .then(quizSucess);
+    getQuiz();
+    getStorage();
+    yourQuizzes();
   } else {
     alert("Pelo menos um dos níveis deve ter uma porcentagem de acerto 0");
   }
