@@ -1,77 +1,7 @@
 //Lista de Quizzes
 let linkBuzzQuiz = "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes";
 let quizzes;
-let userStorage = [
-  {
-    id: 1,
-    title: "Título do quizz",
-    image: "https://http.cat/411.jpg",
-    questions: [
-      {
-        title: "Título da pergunta 1",
-        color: "#123456",
-        answers: [
-          {
-            text: "Texto da resposta 1",
-            image: "https://http.cat/411.jpg",
-            isCorrectAnswer: true,
-          },
-          {
-            text: "Texto da resposta 2",
-            image: "https://http.cat/412.jpg",
-            isCorrectAnswer: false,
-          },
-        ],
-      },
-      {
-        title: "Título da pergunta 2",
-        color: "#123456",
-        answers: [
-          {
-            text: "Texto da resposta 1",
-            image: "https://http.cat/411.jpg",
-            isCorrectAnswer: true,
-          },
-          {
-            text: "Texto da resposta 2",
-            image: "https://http.cat/412.jpg",
-            isCorrectAnswer: false,
-          },
-        ],
-      },
-      {
-        title: "Título da pergunta 3",
-        color: "#123456",
-        answers: [
-          {
-            text: "Texto da resposta 1",
-            image: "https://http.cat/411.jpg",
-            isCorrectAnswer: true,
-          },
-          {
-            text: "Texto da resposta 2",
-            image: "https://http.cat/412.jpg",
-            isCorrectAnswer: false,
-          },
-        ],
-      },
-    ],
-    levels: [
-      {
-        title: "Título do nível 1",
-        image: "https://http.cat/411.jpg",
-        text: "Descrição do nível 1",
-        minValue: 0,
-      },
-      {
-        title: "Título do nível 2",
-        image: "https://http.cat/412.jpg",
-        text: "Descrição do nível 2",
-        minValue: 50,
-      },
-    ],
-  },
-];
+let userStorage = [];
 function getQuiz() {
   let promise = axios.get(linkBuzzQuiz);
   promise.then(renderQuiz);
@@ -109,16 +39,18 @@ function yourQuizzes() {
     const myQuizzes = document.querySelector(".userQuizzes");
     for (quiz of userStorage) {
       myQuizzes.innerHTML += `
-                <div class="quizzStyle">
-                <img src='${quiz.data.image}'>
-                <p>${quiz.data.title}</p>
+                <div class="quizzStyle" id="${quiz.id}" onclick="openQuizz(this)">
+                <img src='${quiz.image}'>
+                <p>${quiz.title}</p>
                 </div> `;
     }
   }
 }
 
 function isImage(url) {
-  return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+  return (
+    /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url) && url.startsWith("http")
+  );
 }
 
 function renderQuiz(resposta) {
@@ -129,27 +61,35 @@ function renderQuiz(resposta) {
     if (isImage(quizzes[i].image)) {
       document.querySelector(".otherQuizzes").innerHTML += `
         <div class='quizzStyle' id=${quizzes[i].id} onclick='openQuizz(this)'>
-        <img src='${quizzes[i].image}'>
+      <img src='${quizzes[i].image}' onerror="">
         <p class='quizzTitle'>${quizzes[i].title}</p>
         <div>`;
     }
   }
 }
-
-/* getQuiz(); */
-
-/* yourQuizzes(); */
-/* getStorage(); */
-function quizSucess() {
-  /* setStorage(response); */
+function quizSucess(response) {
+  const completeQuiz = response.data;
   const main = document.querySelector("main");
   main.innerHTML = `
-  <p>Seu quizz está pronto!</p>
-  <div class="newQuiz"><img src=${userStorage[0].image}>
-  <p>${userStorage[0].title}</p>
-  </div>
-  <button>Acessar Quizz</button>
-  <h1>Voltar pra home</h1>
+  <div class="create-sucess">
+            <h1>Seu quizz está pronto!</h1>
+            <div class="quiz-img">
+                <img src="${completeQuiz.image}" alt="">
+                <h2>${completeQuiz.title}</h2>
+            </div>
+            <div class="nav-buttons">
+                <button class="button-quizz" id="${completeQuiz.id} "onclick="openQuizz(this)">Acessar Quizz</button>
+                <button class="go-home" onclick="gen_Homepage()">Voltar pra home</button>
+            </div>
+    </div>
   `;
+  setStorage(completeQuiz);
 }
-quizSucess();
+
+function gen_Homepage() {
+  getStorage();
+  yourQuizzes();
+  getQuiz();
+}
+
+gen_Homepage();

@@ -32,7 +32,6 @@ function creattingQuizData() {
         validation++;
       }
     } else if (i.placeholder === "URL da imagem do seu quizz") {
-      console.log(1);
       if (isImage(i.value)) {
         userNewQuiz.image = i.value;
         validation++;
@@ -178,11 +177,9 @@ function gettingWrongAnswer(element) {
   if (inputsArray[8].value != "" && isImage(inputsArray[9].value)) {
     wrongOption++;
   }
-  console.log(wrongOption);
   if (wrongOption > 0) {
     return true;
   } else if (wrongOption === 0) {
-    console.log("deu ruim");
     return false;
   }
 }
@@ -210,13 +207,11 @@ function questionObject(element) {
     }
   }
   userNewQuiz.questions.push(wrong);
-  console.log(userNewQuiz);
   return;
 }
 
 function checkQuestions() {
   questionsArray = document.querySelectorAll(".newQuiz");
-  console.log(questionsArray);
   for (x = 0; x < questionsArray.length; x++) {
     checkQuestionValidation(questionsArray[x]);
   }
@@ -230,18 +225,13 @@ function checkQuestions() {
 }
 
 function checkQuestionValidation(element) {
-  console.log(element);
   if (
     gettingQuestion(element) &&
     gettingCorrectAnswer(element) &&
     gettingWrongAnswer(element)
   ) {
     counter++;
-    console.log(counter);
     questionObject(element);
-  } else {
-    console.log("elemento q deu merda");
-    console.log(element);
   }
   return;
 }
@@ -283,7 +273,6 @@ function endLevels() {
   let sendLevels = [];
   for (let numLevel = 1; numLevel <= numberLevels; numLevel++) {
     let levelInputs = document.querySelector(`.level${numLevel}`);
-    console.log(levelInputs);
     let inputs = levelInputs.querySelectorAll("input");
     const tempObj = {
       title: "",
@@ -317,8 +306,6 @@ function endLevels() {
         textField.placeholder === "URL da imagem" &&
         (!isImage(textField.value) || !textField.value.includes("https://"))
       ) {
-        console.log(!isImage(textField.value));
-        console.log(!textField.value.includes("https://"));
         return alert("A URL da imagem deve ser um link de imagem válido");
       } else if (textField.placeholder === "URL da imagem") {
         tempObj.image = textField.value;
@@ -337,13 +324,10 @@ function endLevels() {
     userNewQuiz.levels = sendLevels;
     axios
       .post(
-        "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes",
+        "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes",
         userNewQuiz
       )
       .then(quizSucess);
-    getQuiz();
-    getStorage();
-    yourQuizzes();
   } else {
     alert("Pelo menos um dos níveis deve ter uma porcentagem de acerto 0");
   }

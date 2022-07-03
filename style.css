@@ -47,6 +47,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 main > div {
@@ -92,6 +93,7 @@ main > div {
 .sectionTitle button {
   background: none;
   border: none;
+  cursor: pointer;
 }
 .nonQuizzes {
   border-radius: 0.5rem;
@@ -233,7 +235,7 @@ main > div {
 }
 
 .createQuestions {
-  width: 37rem;
+  max-width: 37rem;
   height: 5.4rem;
   background-color: #ec362d;
   border: none;
@@ -241,6 +243,185 @@ main > div {
   font-size: 2rem;
   color: #fff5f4;
   margin: 8.5rem 0;
+  cursor: pointer;
+  padding: 0 2rem;
+}
+
+/*Abrir um quizz*/
+
+.topImage {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  min-height: 10rem;
+  position: absolute;
+  top: -7.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.topImage p {
+  color: #ffffff;
+  text-align: center;
+  word-break: break-word;
+  padding: 2rem;
+}
+
+.topImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: inherit;
+  z-index: -1;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container > div:first-child {
+  margin-top: 4rem;
+}
+
+.quizzQuestions {
+  background-color: #ffffff;
+  box-shadow: 0rem 0rem 0.1rem rgba(0, 0, 0, 0.05);
+  width: 75.9rem;
+  flex-direction: column;
+  padding: 3.7rem;
+}
+
+.quizzQuestions > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3.7rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.9rem;
+}
+
+.quizzQuestions > div:last-child div {
+  width: 32.8rem;
+}
+
+.quizzQuestions img {
+  width: 32.8rem;
+  height: 17.5rem;
+  position: relative;
+  border-radius: 0.5rem;
+}
+
+.quizzQuestions p {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: black;
+  line-height: 1.9rem;
+  word-break: break-word;
+}
+.opacity {
+  opacity: 0.3;
+}
+
+.rigth p {
+  color: green;
+}
+
+.wrong p {
+  color: #ec362d;
+}
+
+.questionTop {
+  width: 100%; /*98.7rem*/
+  min-height: 13.9rem;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.questionTop p {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 2.2rem;
+  word-break: break-word;
+  text-align: center;
+}
+
+.restart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.restart p {
+  color: #818181;
+  font-weight: 400;
+  font-size: 2.1rem;
+  margin-top: -6rem;
+}
+
+.create-sucess {
+  display: flex;
+  flex-direction: column;
+  height: 50rem;
+  gap: 4.6rem;
+  align-items: center;
+}
+.create-sucess h1 {
+  font-weight: bold;
+  color: #000000;
+  font-size: 2.3rem;
+}
+.create-sucess h2 {
+  font-size: 2.3rem;
+  color: #ffffff;
+  position: absolute;
+  z-index: 2;
+  bottom: 3rem;
+  left: 2.3rem;
+}
+.create-sucess img {
+  position: relative;
+  width: 50rem;
+  height: 26.6rem;
+  z-index: -1;
+}
+.quiz-img {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 0.5) 65.62%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.button-quizz {
+  outline: none;
+  border: none;
+  border-radius: 1.5rem;
+  height: 4.4rem;
+  width: 22.1rem;
+  background-color: #ec362d;
+  color: #fff5f4;
+  font-size: 2.1rem;
+  cursor: pointer;
+}
+.go-home {
+  background: none;
+  border: none;
+  color: #818181;
+  font-size: 2.1rem;
   cursor: pointer;
 }
 
@@ -263,6 +444,14 @@ main > div {
     width: 100%;
   }
 
+  .infoNewQuiz {
+    padding: 2rem 0;
+  }
+
+  .infoNewQuiz input {
+    width: 100%;
+  }
+
   .quizzStyle {
     width: 100%;
     height: auto;
@@ -270,6 +459,37 @@ main > div {
 
   .quizzStyle img {
     width: 100%;
-    height: 38%;
+    height: 100%;
+  }
+
+  .questionTop {
+    min-height: 20vw;
+  }
+
+  .topImage {
+    top: -3rem;
+  }
+
+  .container > div:first-child {
+    margin-top: 8rem;
+  }
+  .quizzQuestions {
+    width: 100%;
+    padding: 5rem 0;
+  }
+  .quizzQuestions > div:last-child {
+    gap: 0.2%;
+    align-items: center;
+    margin-top: 0;
+  }
+
+  .quizzQuestions > div:last-child div {
+    width: 49%;
+    margin-top: 2.5rem;
+  }
+
+  .quizzQuestions img {
+    width: 100%;
+    height: 25vw;
   }
 }
