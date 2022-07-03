@@ -18,7 +18,7 @@ function getStorage() {
 
 function yourQuizzes() {
   const main = document.querySelector("main");
-  if (userStorage.length === 0) {
+  if (userStorage.length === null) {
     main.innerHTML = `
         <div class='nonQuizzes'>
         <h1>Você não criou nenhum</br>quizz ainda :(</h1>
