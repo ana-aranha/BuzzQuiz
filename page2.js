@@ -1,6 +1,7 @@
 //Página de um quizz
 let quizzObject;
 let quizzSelectedQuestions;
+let quizzSelectedLevels;
 let counterLevel = 0
 
 
@@ -18,6 +19,7 @@ function openQuizz(element){
 function printObject(response){
     quizzObject = response.data;
     quizzSelectedQuestions = quizzObject.questions
+    quizzSelectedLevels = quizzObject.levels
     let main = document.querySelector("main");
     main.innerHTML = `
     <div class ='topImage'>
@@ -67,20 +69,50 @@ function selectAnswer(element){
         if(element.classList.contains('true')){
             counterLevel ++
         }
-        console.log(counterLevel)
         element.classList.remove('opacity')
-
+        if(next != null){
+            setTimeout(() => {
+                next.scrollIntoView({ behavior:'smooth', block: "center" });
+            }, 2000)
+        }
     }
-
-    setTimeout(() => {
-        next.scrollIntoView({ behavior:'smooth', block: "center" });
-      }, 2000)
-
-      if(document.querySelectorAll(".rigth").length === quizzSelectedQuestions.length){
+    if(document.querySelectorAll(".rigth").length === quizzSelectedQuestions.length){
         showResults()
+        const restartQuiz = document.querySelector('.restart')
+        setTimeout(() => {
+            restartQuiz.scrollIntoView({ behavior:'smooth', block: "center" });
+        }, 2000)
       }
 }
 
 function showResults(){
-    console.log('respondeu tudo!')
+    let biggerValues = []
+    const questionsDiv = document.querySelector(".container");
+    const hitPercentage = Math.round((counterLevel/quizzSelectedQuestions.length)*100)
+    console.log(hitPercentage)
+    for(let i=0;i<quizzSelectedLevels.length;i++){
+        if (hitPercentage >= quizzSelectedLevels[i].minValue){
+            biggerValues.push(Number(quizzSelectedLevels[i].minValue))
+        }
+    }
+    let realValue = Math.max(...biggerValues)
+    console.log(biggerValues, realValue)
+    for(let i=0;i<quizzSelectedLevels.length;i++)
+        if(quizzSelectedLevels[i].minValue === realValue){
+            questionsDiv.innerHTML += `
+            <div class='quizzQuestions'>
+                <div class='questionTop' style="background-color: #ec362d">
+                    <p>${quizzSelectedLevels[i].title}<p>
+                </div>
+                <div>
+                    <div><img src="${quizzSelectedLevels[i].image}"></div>
+                    <div><p>${quizzSelectedLevels[i].text}</p></div>
+                </div>
+            </div>
+            <div class='restart'>
+            <button class='createQuestions'>Reiniciar Quizz</button>
+            <div><p>Voltar pra home</p></div>
+            </div>
+            `
+        }
 }
