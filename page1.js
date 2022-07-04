@@ -81,8 +81,7 @@ function renderQuiz(resposta) {
               <img src='${quizzes[i].image}' onerror="">
               <p class='quizzTitle'>${quizzes[i].title}</p>
             <div>`;
-      }
-      
+      } 
     }
 
   }
