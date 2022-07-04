@@ -2,6 +2,7 @@
 let linkBuzzQuiz = "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes";
 let quizzes;
 let userStorage = [];
+let userStorageIds = []
 function getQuiz() {
   let promise = axios.get(linkBuzzQuiz);
   promise.then(renderQuiz);
@@ -59,7 +60,7 @@ function renderQuiz(resposta) {
   document.querySelector(".otherQuizzes").innerHTML =
   '<p class="tittleQuizzes">Todos os Quizes</p>';
   for (let i = 0; i < quizzes.length; i++) {
-
+    
     if(userStorage.length === 0){
       if (isImage(quizzes[i].image)){
         document.querySelector(".otherQuizzes").innerHTML += `
@@ -69,17 +70,19 @@ function renderQuiz(resposta) {
           <div>`;
       }
     }
-
+    
     else{
       for(let j=0;j<userStorage.length;j++){
-        if (isImage(quizzes[i].image) && (quizzes[i].id != userStorage[j].id === true)) {
+        userStorageIds.push(userStorage[j].id)
+        console.log(userStorageIds)}
+        if (isImage(quizzes[i].image) && (userStorageIds.includes(quizzes[i].id) === false)) {
           document.querySelector(".otherQuizzes").innerHTML += `
             <div class='quizzStyle' id=${quizzes[i].id} onclick='openQuizz(this)'>
-          <img src='${quizzes[i].image}' onerror="">
-            <p class='quizzTitle'>${quizzes[i].title}</p>
+              <img src='${quizzes[i].image}' onerror="">
+              <p class='quizzTitle'>${quizzes[i].title}</p>
             <div>`;
       }
-      }
+      
     }
 
   }
