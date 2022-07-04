@@ -298,7 +298,7 @@ main > div {
   display: flex;
   flex-wrap: wrap;
   margin-top: 3.7rem;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 2.9rem;
 }
@@ -425,7 +425,7 @@ main > div {
   cursor: pointer;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
   main {
     padding: 0 2rem;
     width: 100%;
@@ -479,7 +479,6 @@ main > div {
   }
   .quizzQuestions > div:last-child {
     gap: 0.2%;
-    align-items: center;
     margin-top: 0;
   }
 

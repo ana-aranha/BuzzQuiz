@@ -2,6 +2,7 @@
 let quizzObject;
 let quizzSelectedQuestions;
 let quizzSelectedLevels;
+let quizzId;
 let counterLevel = 0;
 
 function comparador() {
@@ -9,9 +10,9 @@ function comparador() {
 }
 
 function openQuizz(element) {
-  console.log(element);
+  quizzId = element.id;
   document.querySelector("main").innerHTML = "";
-  let quizzSelected = linkBuzzQuiz + `/${element.id}`;
+  let quizzSelected = linkBuzzQuiz + `/${quizzId}`;
   let promise = axios.get(quizzSelected);
   promise.then(printObject);
 }
@@ -92,14 +93,12 @@ function showResults() {
   const hitPercentage = Math.round(
     (counterLevel / quizzSelectedQuestions.length) * 100
   );
-  console.log(hitPercentage);
   for (let i = 0; i < quizzSelectedLevels.length; i++) {
     if (hitPercentage >= quizzSelectedLevels[i].minValue) {
       biggerValues.push(Number(quizzSelectedLevels[i].minValue));
     }
   }
   let realValue = Math.max(...biggerValues);
-  console.log(biggerValues, realValue);
   for (let i = 0; i < quizzSelectedLevels.length; i++)
     if (quizzSelectedLevels[i].minValue === realValue) {
       questionsDiv.innerHTML += `
@@ -113,9 +112,17 @@ function showResults() {
                 </div>
             </div>
             <div class='restart'>
-            <button class='createQuestions'>Reiniciar Quizz</button>
+            <button class='createQuestions' onclick='restartThisOne()'>Reiniciar Quizz</button>
             <div><p onclick="gen_Homepage()">Voltar pra home</p></div>
             </div>
             `;
     }
+}
+
+function restartThisOne(){
+  counterLevel = 0;
+  document.querySelector("main").innerHTML = "";
+  let quizzSelected = linkBuzzQuiz + `/${quizzId}`;
+  let promise = axios.get(quizzSelected);
+  promise.then(printObject);
 }
