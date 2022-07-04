@@ -57,15 +57,31 @@ function isImage(url) {
 function renderQuiz(resposta) {
   quizzes = resposta.data;
   document.querySelector(".otherQuizzes").innerHTML =
-    '<p class="tittleQuizzes">Todos os Quizes</p>';
+  '<p class="tittleQuizzes">Todos os Quizes</p>';
   for (let i = 0; i < quizzes.length; i++) {
-    if (isImage(quizzes[i].image)) {
-      document.querySelector(".otherQuizzes").innerHTML += `
-        <div class='quizzStyle' id=${quizzes[i].id} onclick='openQuizz(this)'>
-      <img src='${quizzes[i].image}' onerror="">
-        <p class='quizzTitle'>${quizzes[i].title}</p>
-        <div>`;
+
+    if(userStorage.length === 0){
+      if (isImage(quizzes[i].image)){
+        document.querySelector(".otherQuizzes").innerHTML += `
+          <div class='quizzStyle' id=${quizzes[i].id} onclick='openQuizz(this)'>
+        <img src='${quizzes[i].image}' onerror="">
+          <p class='quizzTitle'>${quizzes[i].title}</p>
+          <div>`;
+      }
     }
+
+    else{
+      for(let j=0;j<userStorage.length;j++){
+        if (isImage(quizzes[i].image) && quizzes[i].id != userStorage[j].id) {
+          document.querySelector(".otherQuizzes").innerHTML += `
+            <div class='quizzStyle' id=${quizzes[i].id} onclick='openQuizz(this)'>
+          <img src='${quizzes[i].image}' onerror="">
+            <p class='quizzTitle'>${quizzes[i].title}</p>
+            <div>`;
+      }
+      }
+    }
+
   }
 }
 function quizSucess(response) {

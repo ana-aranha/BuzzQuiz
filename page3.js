@@ -107,6 +107,12 @@ function editQuestion(element) {
 function gettingQuestion(element) {
   let validation = 0;
   const hex = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
     "a",
     "b",
     "c",
@@ -221,6 +227,7 @@ function checkQuestions() {
   } else {
     alert("Preencha os campos corretamentes");
     counter = 0;
+    userNewQuiz.questions = []
   }
 }
 
