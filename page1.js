@@ -74,7 +74,7 @@ function renderQuiz(resposta) {
     else{
       for(let j=0;j<userStorage.length;j++){
         userStorageIds.push(userStorage[j].id)
-        console.log(userStorageIds)}
+        }
         if (isImage(quizzes[i].image) && (userStorageIds.includes(quizzes[i].id) === false)) {
           document.querySelector(".otherQuizzes").innerHTML += `
             <div class='quizzStyle' id=${quizzes[i].id} onclick='openQuizz(this)'>
