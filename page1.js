@@ -72,7 +72,7 @@ function renderQuiz(resposta) {
 
     else{
       for(let j=0;j<userStorage.length;j++){
-        if (isImage(quizzes[i].image) && quizzes[i].id != userStorage[j].id) {
+        if (isImage(quizzes[i].image) && (quizzes[i].id != userStorage[j].id === true)) {
           document.querySelector(".otherQuizzes").innerHTML += `
             <div class='quizzStyle' id=${quizzes[i].id} onclick='openQuizz(this)'>
           <img src='${quizzes[i].image}' onerror="">

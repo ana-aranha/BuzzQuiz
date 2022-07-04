@@ -56,7 +56,6 @@ main > div {
   margin-top: 7.7rem;
 }
 
-/*Botei a altura e o TESTE só pra não ter espaço vazio*/
 .userSection {
   gap: 1rem;
   width: 100%;
@@ -372,6 +371,7 @@ main > div {
   height: 50rem;
   gap: 4.6rem;
   align-items: center;
+  flex-wrap: inherit;
 }
 .create-sucess h1 {
   font-weight: bold;
@@ -405,13 +405,14 @@ main > div {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  align-items: center;
 }
 .button-quizz {
   outline: none;
   border: none;
   border-radius: 1.5rem;
   height: 4.4rem;
-  width: 22.1rem;
+  max-width: 22.1rem;
   background-color: #ec362d;
   color: #fff5f4;
   font-size: 2.1rem;
@@ -490,5 +491,22 @@ main > div {
   .quizzQuestions img {
     width: 100%;
     height: 25vw;
+  }
+  
+  .create-sucess {
+    width: 100%;
+  }
+  
+  .create-sucess div{
+    width: 100%;
+  }
+  
+  .create-sucess img{
+    width: 100%;
+  }
+
+  .create-sucess h2{
+    width: 90%;
+    word-break: break-word;
   }
 }
