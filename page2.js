@@ -94,13 +94,13 @@ function showResults() {
     (counterLevel / quizzSelectedQuestions.length) * 100
   );
   for (let i = 0; i < quizzSelectedLevels.length; i++) {
-    if (hitPercentage >= quizzSelectedLevels[i].minValue) {
+    if (hitPercentage >= Number(quizzSelectedLevels[i].minValue)) {
       biggerValues.push(Number(quizzSelectedLevels[i].minValue));
     }
   }
   let realValue = Math.max(...biggerValues);
   for (let i = 0; i < quizzSelectedLevels.length; i++)
-    if (quizzSelectedLevels[i].minValue === realValue) {
+    if (Number(quizzSelectedLevels[i].minValue) === realValue) {
       questionsDiv.innerHTML += `
             <div class='quizzQuestions'>
                 <div class='questionTop' style="background-color: #ec362d">

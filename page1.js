@@ -1,5 +1,5 @@
 //Lista de Quizzes
-let linkBuzzQuiz = "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes";
+let linkBuzzQuiz = "https://mock-api.driven.com.br/api/vs/buzzquizz/quizzes";
 let quizzes;
 let userStorage = [];
 let userStorageIds = []
